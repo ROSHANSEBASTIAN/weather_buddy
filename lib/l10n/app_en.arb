@@ -1,0 +1,10 @@
+{
+  "appName": "Weather Buddy",
+  "sports": "Sports",
+  "selectLocation": "Select your location",
+  "enterPlace": "Enter place",
+  "verifyPlace": "Verify",
+  "lat": "Latitude",
+  "long": "Longitude",
+  "submit": "Submit"
+}
