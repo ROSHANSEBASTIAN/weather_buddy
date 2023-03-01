@@ -9,12 +9,13 @@ class LocationRepository {
 
   LocationRepository({required this.locationAPI});
 
-  Future<List<Place>> checkForUserLocation(
-    String placeName,
-    String lat,
-    String long,
-  ) async {
+  Future<List<Place>> checkForUserLocation({
+    required String placeName,
+    String? lat,
+    String? long,
+  }) async {
     try {
+      print("received place name is $placeName");
       final response = await locationAPI.searchLocationApi(placeName);
       final placesList =
           (response.data as List).map((e) => Place.fromJson(e)).toList();

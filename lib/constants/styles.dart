@@ -40,7 +40,7 @@ class AppStyles {
   // outlineBorder
   static const outlineBorder1 = OutlineInputBorder(
     borderSide: BorderSide(
-      color: AppColors.white,
+      color: AppColors.primaryColor,
       width: 1.8,
     ),
     borderRadius: BorderRadius.all(

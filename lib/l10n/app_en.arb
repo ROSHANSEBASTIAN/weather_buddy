@@ -4,7 +4,15 @@
   "selectLocation": "Select your location",
   "enterPlace": "Enter place",
   "verifyPlace": "Verify",
+  "search": "Search",
   "lat": "Latitude",
   "long": "Longitude",
-  "submit": "Submit"
+  "submit": "Submit",
+  "name": "Name",
+  "region": "Region",
+  "country": "Country",
+  "select": "Select",
+  "selectPlaceMessage": "Are you sure that you want to select this place",
+  "yes": "Yes",
+  "no": "No"
 }

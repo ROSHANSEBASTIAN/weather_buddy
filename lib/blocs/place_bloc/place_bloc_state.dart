@@ -1,15 +1,14 @@
 part of 'place_bloc_bloc.dart';
 
-abstract class PlaceBlocState extends Equatable {
-  bool loading;
-  Place? place;
+class PlaceBlocState extends Equatable {
+  final Place selPlace;
 
-  PlaceBlocState({required this.loading, this.place});
+  PlaceBlocState({required this.selPlace});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [selPlace];
 }
 
 class PlaceBlocInitial extends PlaceBlocState {
-  PlaceBlocInitial({required super.loading});
+  PlaceBlocInitial() : super(selPlace: Config.defaultPlace);
 }

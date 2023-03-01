@@ -10,12 +10,14 @@ class LocationAPI {
 
   Future<Response> searchLocationApi(String searchString) async {
     try {
+      print("In api, location is $searchString");
       final Response response = await _apiClient.get(
         endpoint: APIEndPoints.searchPlaceByName,
         queryParams: {"q": searchString},
       );
       return response;
     } catch (error) {
+      print("Error from location API ${error}");
       rethrow;
     }
   }

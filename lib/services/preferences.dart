@@ -1,12 +1,17 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:weather_buddy/models/Location.dart';
+import '../models/place/place.dart';
+import '../utils/config.dart';
 
 class Preferences {
   // keys
-  static const String _KEY_SEL_LOCATION_LAT = "SEL_LOCATION_LAT";
-  static const String _KEY_SEL_LOCATION_LONG = "SEL_LOCATION_LONG";
-  static const String _KEY_SEL_LOCATION_PLACE = "SEL_LOCATION_PLACE";
+  static const String _KEY_SEL_PLACE_ID = "_KEY_SEL_PLACE_ID";
+  static const String _KEY_SEL_PLACE_NAME = "_KEY_SEL_PLACE_NAME";
+  static const String _KEY_SEL_PLACE_LAT = "_KEY_SEL_PLACE_LAT";
+  static const String _KEY_SEL_PLACE_LONG = "_KEY_SEL_PLACE_LONG";
+  static const String _KEY_SEL_PLACE_REGION = "_KEY_SEL_PLACE_REGION";
+  static const String _KEY_SEL_PLACE_COUNTRY = "_KEY_SEL_PLACE_COUNTRY";
+  static const String _KEY_SEL_PLACE_URL = "_KEY_SEL_PLACE_URL";
 
 // instance
   static Future<SharedPreferences> get _instance =>
@@ -15,23 +20,45 @@ class Preferences {
   // getters and setters
 
   // for selected location
-  static Future<Location> getSelectedLocation() async {
+  static Future<Place> getSelectedLocation() async {
     final SharedPreferences preferences = await _instance;
-    final selLocation = Location();
-    selLocation.lat = preferences.getString(_KEY_SEL_LOCATION_LAT);
-    selLocation.long = preferences.getString(_KEY_SEL_LOCATION_LONG);
-    selLocation.place = preferences.getString(_KEY_SEL_LOCATION_PLACE);
-    if ((selLocation.lat != null && selLocation.long != null) ||
-        selLocation.place != null) {
-      selLocation.isAValidLocation = true;
-    }
-    return selLocation;
+
+    final int id =
+        preferences.getInt(_KEY_SEL_PLACE_ID) ?? Config.defaultPlace.id!;
+    final String placeName =
+        preferences.getString(_KEY_SEL_PLACE_NAME) ?? Config.defaultPlace.name!;
+    final double lat =
+        preferences.getDouble(_KEY_SEL_PLACE_LAT) ?? Config.defaultPlace.lat!;
+    final double long =
+        preferences.getDouble(_KEY_SEL_PLACE_LONG) ?? Config.defaultPlace.lon!;
+    final String country = preferences.getString(_KEY_SEL_PLACE_COUNTRY) ??
+        Config.defaultPlace.country!;
+    final String region = preferences.getString(_KEY_SEL_PLACE_REGION) ??
+        Config.defaultPlace.region!;
+    final String url =
+        preferences.getString(_KEY_SEL_PLACE_URL) ?? Config.defaultPlace.url!;
+
+    final selPlace = Place(
+      id: id,
+      country: country,
+      lat: lat,
+      lon: long,
+      name: placeName,
+      region: region,
+      url: url,
+    );
+
+    return selPlace;
   }
 
-  static Future<void> setSelectedLocation(Location selLocation) async {
+  static Future<void> setSelectedLocation(Place selPlace) async {
     final SharedPreferences preferences = await _instance;
-    await preferences.setString(_KEY_SEL_LOCATION_LAT, selLocation.lat!);
-    await preferences.setString(_KEY_SEL_LOCATION_LONG, selLocation.long!);
-    await preferences.setString(_KEY_SEL_LOCATION_PLACE, selLocation.place!);
+    await preferences.setInt(_KEY_SEL_PLACE_ID, selPlace.id!);
+    await preferences.setString(_KEY_SEL_PLACE_NAME, selPlace.name!);
+    await preferences.setString(_KEY_SEL_PLACE_COUNTRY, selPlace.country!);
+    await preferences.setString(_KEY_SEL_PLACE_URL, selPlace.url!);
+    await preferences.setDouble(_KEY_SEL_PLACE_LAT, selPlace.lat!);
+    await preferences.setDouble(_KEY_SEL_PLACE_LONG, selPlace.lon!);
+    await preferences.setString(_KEY_SEL_PLACE_REGION, selPlace.region!);
   }
 }
