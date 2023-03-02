@@ -20,16 +20,15 @@ class _WeatherAnimatedState extends State<WeatherAnimated> {
   String cloudRive = "assets/rive/cloud_icon.riv";
 
   Widget renderWeatherInfo(WeatherDataLoaded state) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: double.infinity,
-      color: AppColors.accentColor,
       child: Stack(
         children: [
           Align(
             alignment: Alignment.topLeft,
             child: Padding(
-              padding: const EdgeInsets.all(5),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,6 +103,8 @@ class _WeatherAnimatedState extends State<WeatherAnimated> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   const SizedBox(
                     height: 20,

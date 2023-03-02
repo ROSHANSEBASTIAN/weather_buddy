@@ -13,7 +13,7 @@ part 'weather_state.dart';
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   final WeatherRepository _repository = getItInstance.get<WeatherRepository>();
 
-  WeatherBloc() : super(WeatherInitial()) {
+  WeatherBloc() : super(const WeatherInitial()) {
     on<GetCurrentWeatherEvent>((event, emit) async {
       emit(const WeatherDataLoading());
       try {
@@ -21,10 +21,8 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
         final weatherData = await _repository.checkForCurrentWeather(
           place: event.selectedPlace,
         );
-        Log.weatherLog("Fetching weather info done $weatherData");
         emit(WeatherDataLoaded(currentWeather: weatherData));
       } catch (error) {
-        Log.weatherLog("Fetching weather info error $error");
         emit(WeatherDataLoadError(error: error.toString()));
       }
     });

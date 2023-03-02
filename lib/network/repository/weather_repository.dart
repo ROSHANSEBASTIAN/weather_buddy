@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:weather_buddy/utils/log.dart';
 
 import '../../models/place/place.dart';
 import '../../network/api/weather_api.dart';
@@ -16,15 +15,11 @@ class WeatherRepository {
   }) async {
     try {
       String searchString = "${place.lat},${place.lon}";
-      Log.weatherLog("Search String is $searchString");
       final response = await weatherAPI.searchCurrentWeatherApi(searchString);
-      Log.weatherLog("weatherInfo received back in repo ${response.data}");
       final weatherInfo = Weather.fromJson(response.data);
-      Log.weatherLog("weatherInfo converted to object $weatherInfo");
       return weatherInfo;
     } on DioError catch (e) {
       final errorMessage = APIExceptions.fromError(e).toString();
-      print("weatherInfo received. But error $errorMessage");
       throw errorMessage;
     }
   }

@@ -1,28 +1,61 @@
 import '../../utils/basic_imports.dart';
 
 class EmptyComponent extends StatelessWidget {
-  late bool loading;
-  late bool isAList;
+  final bool loading;
+  final bool isAList;
   List<dynamic>? list;
+  String? error;
+  String? emptyText;
+  String? loadingText;
+  Function? onReload;
 
   EmptyComponent({
     Key? key,
     required this.loading,
     required this.isAList,
     this.list,
+    this.error,
+    this.emptyText,
+    this.loadingText,
+    this.onReload,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final showLoader = loading && (error == null || error!.isEmpty);
+    final showError = error != null && error!.isNotEmpty;
+
     return Expanded(
       child: Center(
-        child: loading
-            ? const CircularProgressIndicator()
-            : isAList && (list == null || list!.isEmpty)
-                ? const Text("No data found")
-                : const SizedBox(
-                    height: 0,
-                    width: 0,
+        child: (showLoader)
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const CircularProgressIndicator(),
+                  Text(
+                    loadingText ??
+                        AppLocalizations.of(context)!.loading_default,
+                  )
+                ],
+              )
+            : showError
+                ? Column(
+                    children: [
+                      Text(
+                          error ?? AppLocalizations.of(context)!.error_default),
+                      ElevatedButton(
+                        onPressed: () {
+                          if (onReload != null) {
+                            onReload!();
+                          }
+                        },
+                        child: Text(AppLocalizations.of(context)!.try_again),
+                      )
+                    ],
+                  )
+                : Text(
+                    emptyText ?? AppLocalizations.of(context)!.no_data_found,
                   ),
       ),
     );

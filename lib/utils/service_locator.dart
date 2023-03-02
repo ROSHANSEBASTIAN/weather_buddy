@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:weather_buddy/network/api/forecast_api.dart';
 import 'package:weather_buddy/network/api/weather_api.dart';
+import 'package:weather_buddy/network/repository/forecast_repository.dart';
 import 'package:weather_buddy/network/repository/weather_repository.dart';
 
 import '../network/repository/location_repository.dart';
@@ -24,6 +26,9 @@ Future<void> setupLocator() async {
   getItInstance.registerSingleton(WeatherAPI(
     apiClient: getItInstance<APIClient>(),
   ));
+  getItInstance.registerSingleton(ForecastAPI(
+    apiClient: getItInstance<APIClient>(),
+  ));
 
   // Repositories
   getItInstance.registerSingleton(
@@ -31,5 +36,8 @@ Future<void> setupLocator() async {
   );
   getItInstance.registerSingleton(
     WeatherRepository(weatherAPI: getItInstance.get<WeatherAPI>()),
+  );
+  getItInstance.registerSingleton(
+    ForecastRepository(forecastAPI: getItInstance.get<ForecastAPI>()),
   );
 }

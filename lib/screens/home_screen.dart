@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_buddy/blocs/weather/weather_bloc.dart';
-
+import '../blocs/weather/weather_bloc.dart';
+import '../constants/colors.dart';
+import '../constants/styles.dart';
+import '../widgets/home/home_horizontal_list.dart';
 import '../utils/screen_imports.dart';
 import '../controllers/home_controller.dart';
 import '../widgets/home/selected_location_info_card.dart';
@@ -15,7 +17,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   //
-  final WeatherBloc _weatherBloc = WeatherBloc();
 
   final HomeController _homeController = HomeController();
   @override
@@ -36,19 +37,27 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.grey1,
       appBar: CommonAppBar(titleText: AppLocalizations.of(context)!.appName),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                const WeatherAnimated(),
-                SelectedLocationInfoCard(
-                  context: context,
-                ),
-              ],
-            )
-          ],
+      body: Container(
+        decoration: AppStyles.decorationGradient1,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  const WeatherAnimated(),
+                  SelectedLocationInfoCard(
+                    context: context,
+                  ),
+                ],
+              ),
+              const HomeHorizontalList(),
+              const SizedBox(
+                height: 20,
+              )
+            ],
+          ),
         ),
       ),
     );

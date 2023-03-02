@@ -30,11 +30,15 @@ class SelectedLocationInfoCard extends StatelessWidget {
         children: [
           Text(
             key,
-            style: AppStyles.p4,
+            style: AppStyles.p4.copyWith(
+              color: AppColors.grey5,
+            ),
           ),
           Text(
             value,
-            style: AppStyles.h3,
+            style: AppStyles.h3.copyWith(
+              color: AppColors.primaryColor,
+            ),
           )
         ],
       ),
@@ -57,6 +61,7 @@ class SelectedLocationInfoCard extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
             ),
+            color: AppColors.transparent_90,
             child: Column(children: [
               renderCardListItem(
                 key: AppLocalizations.of(context)!.name,
