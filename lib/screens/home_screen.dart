@@ -1,3 +1,6 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_buddy/blocs/weather/weather_bloc.dart';
+
 import '../utils/screen_imports.dart';
 import '../controllers/home_controller.dart';
 import '../widgets/home/selected_location_info_card.dart';
@@ -11,18 +14,22 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // states
+  //
+  final WeatherBloc _weatherBloc = WeatherBloc();
 
   final HomeController _homeController = HomeController();
   @override
   void initState() {
     super.initState();
-    checkForLocation();
+    checkForLocationAndWeather();
   }
 
-  void checkForLocation() async {
+  void checkForLocationAndWeather() async {
     final place = await _homeController.checkForLocation(
       context: context,
+    );
+    BlocProvider.of<WeatherBloc>(context).add(
+      GetCurrentWeatherEvent(selectedPlace: place),
     );
   }
 

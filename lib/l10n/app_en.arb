@@ -14,5 +14,15 @@
   "select": "Select",
   "selectPlaceMessage": "Are you sure that you want to select this place",
   "yes": "Yes",
-  "no": "No"
+  "no": "No",
+  "temp_short": "Temp",
+  "wind": "Wind",
+  "humidity": "Humidity",
+  "uv": "UV index",
+  "degree_celsius": "°C",
+  "degree_fahrenheit": "°F",
+  "weather": "Weather",
+  "speed": "Speed",
+  "direction": "Direction",
+  "degree": "Degree"
 }

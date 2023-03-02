@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_buddy/blocs/place_bloc/place_bloc_bloc.dart';
+import 'package:weather_buddy/blocs/weather/weather_bloc.dart';
 import 'package:weather_buddy/services/preferences.dart';
 import 'package:weather_buddy/utils/screen_imports.dart';
 
@@ -14,6 +15,7 @@ class LocationSelectionController {
   final preferences = getItInstance.get<Preferences>();
   LocationRepository locationRepository =
       getItInstance.get<LocationRepository>();
+  WeatherBloc weatherBloc = WeatherBloc();
 
   Future<List<Place>> placeVerificationHandler() async {
     print("entered value is ${searchEditingController.text}");
@@ -38,10 +40,12 @@ class LocationSelectionController {
   }) {
     //
     void onPlaceConfirmed(BuildContext modalContext) {
-      // await Preferences.setSelectedLocation(selPlace);
       print("Call reached controller $selPlace");
       BlocProvider.of<PlaceBlocBloc>(context).add(
         SaveSelectedPlace(selPlace: selPlace),
+      );
+      BlocProvider.of<WeatherBloc>(context).add(
+        GetCurrentWeatherEvent(selectedPlace: selPlace),
       );
       Navigator.of(modalContext).pop();
       Navigator.of(context).pop();

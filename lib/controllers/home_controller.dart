@@ -1,3 +1,6 @@
+import 'package:weather_buddy/models/weather/weather.dart';
+import 'package:weather_buddy/network/repository/weather_repository.dart';
+
 import '../models/place/place.dart';
 import '../utils/screen_imports.dart';
 import '../services/preferences.dart';
@@ -14,6 +17,7 @@ class HomeController {
   final preferences = getItInstance.get<Preferences>();
   LocationRepository locationRepository =
       getItInstance.get<LocationRepository>();
+  WeatherRepository weatherRepository = getItInstance.get<WeatherRepository>();
 
 // callbacks
 
@@ -22,14 +26,13 @@ class HomeController {
     Place place = await Preferences.getSelectedLocation();
     selPlace = place;
 
-    print("Selected location is $selPlace");
-
     return selPlace!;
   }
 
-  void submitHandler() {}
+  Future<Weather> getCurrentWeatherInfo({required Place selPlace}) async {
+    final weatherInfo =
+        await weatherRepository.checkForCurrentWeather(place: selPlace);
 
-  String displayStringForOption(Place selPlace) {
-    return selPlace.name ?? "Search for place";
+    return weatherInfo;
   }
 }

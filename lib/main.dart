@@ -1,7 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../blocs/place_bloc/place_bloc_bloc.dart';
 import './utils/basic_imports.dart';
+
+import '../../blocs/weather/weather_bloc.dart';
+import '../blocs/place_bloc/place_bloc_bloc.dart';
 import 'navigation/routes.dart' as app_routes;
 import './utils/service_locator.dart';
 
@@ -19,6 +20,7 @@ class WeatherBuddy extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<PlaceBlocBloc>(create: (context) => PlaceBlocBloc()),
+        BlocProvider<WeatherBloc>(create: (context) => WeatherBloc()),
       ],
       child: MaterialApp(
         initialRoute: app_routes.homeScreen,
