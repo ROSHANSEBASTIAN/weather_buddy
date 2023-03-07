@@ -44,5 +44,6 @@
   "moon_rise": "Moonrise time",
   "moon_set": "Moonset time",
   "moon_phase": "Moon phase",
-  "hourly_forecast": "Hourly forecast"
+  "hourly_forecast": "Hourly forecast",
+  "loading_sports_events": "Loading sports events. Please wait..."
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_buddy/navigation/home_bottom_tabs.dart';
+import 'package:weather_buddy/screens/sports_screen.dart';
 
 import '../screens/location_selection_screen.dart';
 import '../screens/home_screen.dart';
@@ -17,4 +18,5 @@ Map<String, Widget Function(BuildContext context)> routeConfig = {
   homeScreen: (BuildContext context) => const HomeScreen(),
   placePickerScreen: (BuildContext context) => LocationSelectionScreen(),
   homeTabs: (BuildContext context) => const HomeBottomTabs(),
+  sportsScreen: (BuildContext context) => const SportsScreen(),
 };

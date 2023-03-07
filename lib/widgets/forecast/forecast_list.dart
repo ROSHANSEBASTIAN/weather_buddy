@@ -1,10 +1,10 @@
+import '../../utils/basic_imports.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_buddy/widgets/common/empty_component.dart';
-import 'package:weather_buddy/widgets/forecast/forecast_list_item.dart';
 
+import '../../widgets/common/empty_component.dart';
+import '../../widgets/forecast/forecast_list_item.dart';
 import '../../utils/log.dart';
 import '../../blocs/forecast/forecast_bloc.dart';
-import '../../utils/basic_imports.dart';
 
 class ForecastList extends StatelessWidget {
   const ForecastList({Key? key}) : super(key: key);
@@ -15,8 +15,6 @@ class ForecastList extends StatelessWidget {
       builder: (context, state) {
         if (state is ForecastDataLoaded) {
           final forecastListInfo = state.forecast.forecast!.forecastday!;
-          Log.forecastLog("Receved forecast list $forecastListInfo");
-
           return ListView.builder(
             itemCount: forecastListInfo.length,
             itemBuilder: (context, index) {

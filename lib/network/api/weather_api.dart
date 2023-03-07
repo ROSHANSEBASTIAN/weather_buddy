@@ -17,7 +17,6 @@ class WeatherAPI {
       );
       return response;
     } catch (error) {
-      print("Error from current weather API ${error}");
       rethrow;
     }
   }

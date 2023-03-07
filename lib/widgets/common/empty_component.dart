@@ -32,10 +32,14 @@ class EmptyComponent extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const CircularProgressIndicator(),
+                  const CircularProgressIndicator(color: AppColors.white),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Text(
                     loadingText ??
                         AppLocalizations.of(context)!.loading_default,
+                    style: AppStyles.p2.copyWith(color: AppColors.white),
                   )
                 ],
               )

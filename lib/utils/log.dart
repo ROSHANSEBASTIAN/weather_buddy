@@ -8,4 +8,9 @@ class Log {
   static void forecastLog(dynamic data) {
     print("Forecast log: $data");
   }
+
+// sports log
+  static void sportsLog(dynamic data) {
+    print("Sports log: $data");
+  }
 }
