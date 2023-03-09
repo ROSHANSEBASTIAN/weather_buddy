@@ -84,4 +84,20 @@ class AppStyles {
       tileMode: TileMode.mirror,
     ),
   );
+
+  static final appTheme = ThemeData(
+    colorScheme: const ColorScheme(
+      brightness: Brightness.light,
+      primary: AppColors.primaryColor,
+      onPrimary: AppColors.white,
+      secondary: AppColors.accentColor,
+      onSecondary: AppColors.white,
+      error: AppColors.red,
+      onError: AppColors.white,
+      background: AppColors.grey1,
+      onBackground: AppColors.grey5,
+      surface: AppColors.white,
+      onSurface: AppColors.grey5,
+    ),
+  );
 }

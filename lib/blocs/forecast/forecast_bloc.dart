@@ -19,8 +19,9 @@ class ForecastBloc extends Bloc<ForecastEvent, ForecastState> {
       Log.forecastLog("Working on fetching forecast info");
       emit(const ForecastDataLoading());
       try {
-        final forecastInfo =
-            await _repository.searchForWeatherForecast(place: event.selPlace);
+        final forecastInfo = await _repository.searchForWeatherForecast(
+          place: event.selPlace,
+        );
         emit(ForecastDataLoaded(forecast: forecastInfo));
       } catch (error) {
         Log.forecastLog("Error while fetching forecast $error");

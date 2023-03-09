@@ -1,9 +1,9 @@
+import '../utils/screen_imports.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_buddy/blocs/place_bloc/place_bloc_bloc.dart';
-import 'package:weather_buddy/blocs/weather/weather_bloc.dart';
-import 'package:weather_buddy/services/preferences.dart';
-import 'package:weather_buddy/utils/screen_imports.dart';
 
+import '../blocs/settings/settings_bloc.dart';
+import '../blocs/weather/weather_bloc.dart';
+import '../services/preferences.dart';
 import '../network/repository/location_repository.dart';
 import '../utils/service_locator.dart';
 import '../models/place/place.dart';
@@ -40,9 +40,8 @@ class LocationSelectionController {
   }) {
     //
     void onPlaceConfirmed(BuildContext modalContext) {
-      print("Call reached controller $selPlace");
-      BlocProvider.of<PlaceBlocBloc>(context).add(
-        SaveSelectedPlace(selPlace: selPlace),
+      BlocProvider.of<SettingsBloc>(context).add(
+        SaveSelPlace(selPlace: selPlace),
       );
       BlocProvider.of<WeatherBloc>(context).add(
         GetCurrentWeatherEvent(selectedPlace: selPlace),

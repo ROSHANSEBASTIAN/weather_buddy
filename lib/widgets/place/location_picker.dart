@@ -1,3 +1,6 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_buddy/blocs/place/place_bloc.dart';
+
 import '../../utils/basic_imports.dart';
 
 import '../../models/place/place.dart';
@@ -20,26 +23,13 @@ class LocationPicker extends StatefulWidget {
 class _LocationPickerState extends State<LocationPicker> {
   List<Place>? searchedPlaces;
   List<Widget> placeWidgetsList = [];
-  bool _loadingForSearching = false;
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
   void onSubmitted() async {
-    setState(() {
-      _loadingForSearching = true;
-    });
-    try {
-      final list = await widget.locationController.placeVerificationHandler();
-      setState(() {
-        searchedPlaces = list;
-      });
-      populateWidgetsList(list);
-    } catch (error) {
-      print("Error while searching ${error.toString()}");
-    } finally {
-      setState(() {
-        _loadingForSearching = false;
-      });
-    }
+    BlocProvider.of<PlaceBloc>(context).add(
+      SearchPlaceEvent(
+          searchString: widget.locationController.searchEditingController.text),
+    );
   }
 
   void locationSelectionHandler(Place selPlace) {
@@ -103,17 +93,11 @@ class _LocationPickerState extends State<LocationPicker> {
         const SizedBox(
           height: 20,
         ),
-        widget.locationController.showEmptyComponent(
-          loading: _loadingForSearching,
-          placeList: searchedPlaces,
-        )
-            ? EmptyComponent(
-                loading: _loadingForSearching,
-                isAList: true,
-                list: searchedPlaces,
-                loadingColor: AppColors.grey5,
-              )
-            : Expanded(
+        BlocBuilder<PlaceBloc, PlaceState>(
+          builder: (context, state) {
+            if (state is PlaceListLoadSuccess) {
+              populateWidgetsList(state.placeList);
+              return Expanded(
                 flex: 1,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -128,16 +112,29 @@ class _LocationPickerState extends State<LocationPicker> {
                     },
                   ),
                 ),
-              )
+              );
+            } else if (state is PlaceListLoading) {
+              return EmptyComponent(
+                loading: true,
+                isAList: true,
+                loadingColor: AppColors.grey5,
+              );
+            } else if (state is PlaceListLoadError) {
+              return EmptyComponent(
+                loading: false,
+                isAList: true,
+                error: state.error,
+              );
+            } else {
+              return EmptyComponent(
+                loading: false,
+                isAList: true,
+                emptyText: AppLocalizations.of(context)!.no_data_found,
+              );
+            }
+          },
+        ),
       ],
     );
   }
 }
-
-// ListView.builder(
-//                     itemBuilder: (context, index) => LocationListItem(
-//                       place: searchedPlaces![index],
-//                       locationSelectionHandler: locationSelectionHandler,
-//                     ),
-//                     itemCount: searchedPlaces?.length,
-//                   ),

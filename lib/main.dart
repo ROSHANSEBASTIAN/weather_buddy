@@ -1,8 +1,10 @@
+import 'package:weather_buddy/blocs/settings/settings_bloc.dart';
+
 import './utils/basic_imports.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../blocs/weather/weather_bloc.dart';
-import '../blocs/place_bloc/place_bloc_bloc.dart';
+import '../blocs/place/place_bloc.dart';
 import '../blocs/sports/sports_bloc.dart';
 import '../blocs/forecast/forecast_bloc.dart';
 import './navigation/routes.dart' as app_routes;
@@ -21,7 +23,8 @@ class WeatherBuddy extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<PlaceBlocBloc>(create: (context) => PlaceBlocBloc()),
+        BlocProvider<SettingsBloc>(create: (context) => SettingsBloc()),
+        BlocProvider<PlaceBloc>(create: (context) => PlaceBloc()),
         BlocProvider<WeatherBloc>(create: (context) => WeatherBloc()),
         BlocProvider<ForecastBloc>(create: (context) => ForecastBloc()),
         BlocProvider<SportsBloc>(create: (context) => SportsBloc()),
@@ -32,21 +35,7 @@ class WeatherBuddy extends StatelessWidget {
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: const ColorScheme(
-            brightness: Brightness.light,
-            primary: AppColors.primaryColor,
-            onPrimary: AppColors.white,
-            secondary: AppColors.accentColor,
-            onSecondary: AppColors.white,
-            error: AppColors.red,
-            onError: AppColors.white,
-            background: AppColors.grey1,
-            onBackground: AppColors.grey5,
-            surface: AppColors.white,
-            onSurface: AppColors.grey5,
-          ),
-        ),
+        theme: AppStyles.appTheme,
       ),
     );
   }

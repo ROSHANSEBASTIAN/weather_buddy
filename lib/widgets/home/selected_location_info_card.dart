@@ -1,7 +1,7 @@
 import '../../utils/basic_imports.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../blocs/place_bloc/place_bloc_bloc.dart';
+import '../../blocs/settings/settings_bloc.dart';
 import '../../models/place/place.dart';
 import '../../navigation/routes.dart';
 
@@ -51,9 +51,9 @@ class SelectedLocationInfoCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         horizontal: 6,
       ),
-      child: BlocBuilder<PlaceBlocBloc, PlaceBlocState>(
+      child: BlocBuilder<SettingsBloc, SettingsState>(
         builder: (context, state) {
-          Place selectedPlace = state.selPlace;
+          Place selectedPlace = state.settings.selPlace!;
           return Card(
             elevation: 6,
             clipBehavior: Clip.hardEdge,
