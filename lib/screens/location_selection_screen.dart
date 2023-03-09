@@ -14,12 +14,10 @@ class LocationSelectionScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.selectLocation),
       ),
-      body: Column(
-        children: [
-          LocationPicker(
-            locationController: locationController,
-          ),
-        ],
+      backgroundColor: AppColors.grey1,
+      resizeToAvoidBottomInset: false,
+      body: LocationPicker(
+        locationController: locationController,
       ),
     );
   }

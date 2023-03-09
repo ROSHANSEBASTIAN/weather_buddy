@@ -51,7 +51,6 @@ class SelectedLocationInfoCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         horizontal: 6,
       ),
-      margin: const EdgeInsets.only(top: 330),
       child: BlocBuilder<PlaceBlocBloc, PlaceBlocState>(
         builder: (context, state) {
           Place selectedPlace = state.selPlace;

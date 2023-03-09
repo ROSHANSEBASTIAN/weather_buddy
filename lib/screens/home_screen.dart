@@ -44,13 +44,9 @@ class _HomeScreenState extends State<HomeScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Stack(
-                children: [
-                  const WeatherAnimated(),
-                  SelectedLocationInfoCard(
-                    context: context,
-                  ),
-                ],
+              const WeatherAnimated(),
+              SelectedLocationInfoCard(
+                context: context,
               ),
               const HomeHorizontalList(),
               const SizedBox(

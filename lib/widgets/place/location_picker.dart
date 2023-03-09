@@ -19,7 +19,9 @@ class LocationPicker extends StatefulWidget {
 
 class _LocationPickerState extends State<LocationPicker> {
   List<Place>? searchedPlaces;
+  List<Widget> placeWidgetsList = [];
   bool _loadingForSearching = false;
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
   void onSubmitted() async {
     setState(() {
@@ -30,7 +32,7 @@ class _LocationPickerState extends State<LocationPicker> {
       setState(() {
         searchedPlaces = list;
       });
-      print("search list is ${list}");
+      populateWidgetsList(list);
     } catch (error) {
       print("Error while searching ${error.toString()}");
     } finally {
@@ -45,6 +47,24 @@ class _LocationPickerState extends State<LocationPicker> {
       context: context,
       selPlace: selPlace,
     );
+  }
+
+  void populateWidgetsList(List<Place> list) {
+    placeWidgetsList = [];
+    Future future = Future(() {});
+    list.forEach((place) {
+      future = future.then((_) {
+        return Future.delayed(const Duration(milliseconds: 60), () {
+          placeWidgetsList.add(
+            LocationListItem(
+              place: place,
+              locationSelectionHandler: locationSelectionHandler,
+            ),
+          );
+          _listKey.currentState!.insertItem(placeWidgetsList.length - 1);
+        });
+      });
+    });
   }
 
   @override
@@ -83,28 +103,41 @@ class _LocationPickerState extends State<LocationPicker> {
         const SizedBox(
           height: 20,
         ),
-        Container(
-          width: double.infinity,
-          height: MediaQuery.of(context).size.height * 0.75,
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: widget.locationController.showEmptyComponent(
-            loading: _loadingForSearching,
-            placeList: searchedPlaces,
-          )
-              ? EmptyComponent(
-                  loading: _loadingForSearching,
-                  isAList: true,
-                  list: searchedPlaces,
-                )
-              : ListView.builder(
-                  itemBuilder: (context, index) => LocationListItem(
-                    place: searchedPlaces![index],
-                    locationSelectionHandler: locationSelectionHandler,
+        widget.locationController.showEmptyComponent(
+          loading: _loadingForSearching,
+          placeList: searchedPlaces,
+        )
+            ? EmptyComponent(
+                loading: _loadingForSearching,
+                isAList: true,
+                list: searchedPlaces,
+                loadingColor: AppColors.grey5,
+              )
+            : Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: AnimatedList(
+                    key: _listKey,
+                    initialItemCount: placeWidgetsList.length,
+                    itemBuilder: (context, index, animation) {
+                      return SizeTransition(
+                        sizeFactor: animation,
+                        child: placeWidgetsList[index],
+                      );
+                    },
                   ),
-                  itemCount: searchedPlaces?.length,
                 ),
-        ),
+              )
       ],
     );
   }
 }
+
+// ListView.builder(
+//                     itemBuilder: (context, index) => LocationListItem(
+//                       place: searchedPlaces![index],
+//                       locationSelectionHandler: locationSelectionHandler,
+//                     ),
+//                     itemCount: searchedPlaces?.length,
+//                   ),

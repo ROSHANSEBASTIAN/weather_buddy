@@ -8,6 +8,7 @@ class EmptyComponent extends StatelessWidget {
   String? emptyText;
   String? loadingText;
   Function? onReload;
+  Color? loadingColor;
 
   EmptyComponent({
     Key? key,
@@ -18,6 +19,7 @@ class EmptyComponent extends StatelessWidget {
     this.emptyText,
     this.loadingText,
     this.onReload,
+    this.loadingColor,
   }) : super(key: key);
 
   @override
@@ -32,14 +34,16 @@ class EmptyComponent extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const CircularProgressIndicator(color: AppColors.white),
+                  CircularProgressIndicator(
+                      color: loadingColor ?? AppColors.white),
                   const SizedBox(
                     height: 10,
                   ),
                   Text(
                     loadingText ??
                         AppLocalizations.of(context)!.loading_default,
-                    style: AppStyles.p2.copyWith(color: AppColors.white),
+                    style: AppStyles.p2
+                        .copyWith(color: loadingColor ?? AppColors.white),
                   )
                 ],
               )

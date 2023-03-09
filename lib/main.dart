@@ -1,11 +1,10 @@
-import 'package:weather_buddy/blocs/sports/sports_bloc.dart';
-
 import './utils/basic_imports.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../blocs/weather/weather_bloc.dart';
+import '../blocs/weather/weather_bloc.dart';
 import '../blocs/place_bloc/place_bloc_bloc.dart';
-import '../../blocs/forecast/forecast_bloc.dart';
+import '../blocs/sports/sports_bloc.dart';
+import '../blocs/forecast/forecast_bloc.dart';
 import './navigation/routes.dart' as app_routes;
 import './utils/service_locator.dart';
 
