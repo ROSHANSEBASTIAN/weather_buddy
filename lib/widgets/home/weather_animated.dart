@@ -1,10 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rive/rive.dart';
-import 'package:weather_buddy/widgets/home/weather_info_card.dart';
-import '../../utils/basic_imports.dart';
 
+import '../../widgets/home/weather_info_card.dart';
+import '../../utils/basic_imports.dart';
 import '../../blocs/weather/weather_bloc.dart';
-import '../../utils/log.dart';
 
 class WeatherAnimated extends StatefulWidget {
   const WeatherAnimated({

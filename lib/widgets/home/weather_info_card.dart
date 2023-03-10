@@ -1,6 +1,5 @@
-import 'package:weather_buddy/models/weather/weather.dart';
-
 import '../../utils/basic_imports.dart';
+import '../../models/weather/weather.dart';
 
 class WeatherInfoCard extends StatelessWidget {
   final Weather currentWeather;
@@ -12,7 +11,7 @@ class WeatherInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return TweenAnimationBuilder(
       tween: Tween<double>(begin: 0, end: 1),
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 400),
       builder: (context, value, child) {
         return Opacity(
           opacity: value,

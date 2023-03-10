@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../blocs/settings/settings_bloc.dart';
 import '../../blocs/sports/sports_bloc.dart';
-import '../../constants/styles.dart';
 import '../../widgets/sports/sports_list.dart';
 
 class SportsScreen extends StatefulWidget {

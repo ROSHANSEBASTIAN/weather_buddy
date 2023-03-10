@@ -1,3 +1,6 @@
+import 'package:weather_buddy/models/sports/golf.dart';
+import 'package:weather_buddy/utils/log.dart';
+
 import '../../utils/basic_imports.dart';
 
 import '../../constants/enums.dart';
@@ -9,7 +12,7 @@ class SportsListItem extends StatelessWidget {
   SportsType sportsType;
   List<Football>? footballInfo;
   List<Cricket>? cricketInfo;
-  List<dynamic>? golfInfo;
+  List<Golf>? golfInfo;
   final String title;
 
   SportsListItem({
@@ -21,29 +24,31 @@ class SportsListItem extends StatelessWidget {
     this.golfInfo,
   }) : super(key: key);
 
-  Iterable<SportsEventsListItem> renderListItems(List<dynamic> itemsList) {
+  Iterable<Widget> renderListItems(List<dynamic> itemsList) {
     if (itemsList.isNotEmpty) {
-      return itemsList.map(
-        (item) => SportsEventsListItem(
-          country: item.country!,
-          match: item.match!,
-          region: item.region!,
-          stadium: item.stadium!,
-          start: item.start!,
-          tournament: item.tournament!,
-          isListEmpty: false,
-        ),
-      );
+      return itemsList.map((item) {
+        Log.sportsLog("list item is ${item}");
+
+        if (item != null && item.country != null) {
+          return SportsEventsListItem(
+            country: item?.country,
+            match: item.match!,
+            region: item.region!,
+            stadium: item.stadium!,
+            start: item.start!,
+            tournament: item.tournament!,
+            isListEmpty: false,
+          );
+        } else {
+          return const SizedBox(
+            height: 0,
+          );
+        }
+      });
     } else {
       return [1].map(
-        (item) => const SportsEventsListItem(
-          isListEmpty: true,
-          country: "",
-          match: "",
-          region: "",
-          stadium: "",
-          start: "",
-          tournament: "",
+        (item) => const SizedBox(
+          height: 20,
         ),
       );
     }
@@ -86,7 +91,7 @@ class SportsListItem extends StatelessWidget {
               title,
               style: AppStyles.h2.copyWith(color: AppColors.white),
             ),
-            ...renderListItems(golfInfo as List<dynamic>),
+            ...renderListItems(golfInfo as List<Golf>),
           ],
         ),
       );

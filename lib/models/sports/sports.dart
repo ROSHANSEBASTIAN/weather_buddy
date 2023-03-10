@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:weather_buddy/models/sports/golf.dart';
 
 import 'cricket.dart';
 import 'football.dart';
@@ -10,7 +11,7 @@ part 'sports.g.dart';
 class Sports extends Equatable {
   final List<Football>? football;
   final List<Cricket>? cricket;
-  final List<dynamic>? golf;
+  final List<Golf>? golf;
 
   const Sports({this.football, this.cricket, this.golf});
 

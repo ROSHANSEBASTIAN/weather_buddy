@@ -1,4 +1,5 @@
-import '../utils/basic_imports.dart';
+import '../utils/screen_imports.dart';
+
 import '../controllers/location_selection_controller.dart';
 import '../widgets/place/location_picker.dart';
 
@@ -11,9 +12,8 @@ class LocationSelectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.selectLocation),
-      ),
+      appBar:
+          CommonAppBar(titleText: AppLocalizations.of(context)!.selectLocation),
       backgroundColor: AppColors.grey1,
       resizeToAvoidBottomInset: false,
       body: LocationPicker(

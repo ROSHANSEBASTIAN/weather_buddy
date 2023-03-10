@@ -13,7 +13,9 @@ Sports _$SportsFromJson(Map<String, dynamic> json) => Sports(
       cricket: (json['cricket'] as List<dynamic>?)
           ?.map((e) => Cricket.fromJson(e as Map<String, dynamic>))
           .toList(),
-      golf: json['golf'] as List<dynamic>?,
+      golf: (json['golf'] as List<dynamic>?)
+          ?.map((e) => Golf.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$SportsToJson(Sports instance) => <String, dynamic>{

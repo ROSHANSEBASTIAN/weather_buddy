@@ -13,4 +13,9 @@ class Log {
   static void sportsLog(dynamic data) {
     print("Sports log: $data");
   }
+
+// astro log
+  static void astroLog(dynamic data) {
+    print("Astro log: $data");
+  }
 }

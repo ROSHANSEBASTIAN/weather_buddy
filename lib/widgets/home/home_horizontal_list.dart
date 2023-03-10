@@ -55,7 +55,7 @@ class HomeHorizontalList extends StatelessWidget {
   }
 
   void navigateToAstronomyScreen(BuildContext context) {
-    Navigator.of(context).pushNamed(sportsScreen);
+    Navigator.of(context).pushNamed(astronomyScreen);
   }
 
   void navigateToWeatherHistoryScreen(BuildContext context) {

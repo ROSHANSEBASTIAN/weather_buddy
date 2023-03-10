@@ -1,12 +1,10 @@
+import '../../utils/basic_imports.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_buddy/constants/enums.dart';
-import 'package:weather_buddy/models/sports/sports.dart';
-import 'package:weather_buddy/utils/log.dart';
-import 'package:weather_buddy/widgets/sports/sports_list_item.dart';
 
+import '../../constants/enums.dart';
+import '../../widgets/sports/sports_list_item.dart';
 import '../../blocs/sports/sports_bloc.dart';
 import '../../widgets/common/empty_component.dart';
-import '../../utils/basic_imports.dart';
 
 class SportsList extends StatelessWidget {
   const SportsList({Key? key}) : super(key: key);

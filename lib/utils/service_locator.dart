@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:weather_buddy/network/api/astronomy_api.dart';
+import 'package:weather_buddy/network/repository/astronomy_repository.dart';
 
 import '../network/api/forecast_api.dart';
 import '../network/api/sports_api.dart';
@@ -34,6 +36,9 @@ Future<void> setupLocator() async {
   getItInstance.registerSingleton(SportsAPI(
     apiClient: getItInstance<APIClient>(),
   ));
+  getItInstance.registerSingleton(AstronomyAPI(
+    apiClient: getItInstance<APIClient>(),
+  ));
 
   // Repositories
   getItInstance.registerSingleton(
@@ -47,5 +52,8 @@ Future<void> setupLocator() async {
   );
   getItInstance.registerSingleton(
     SportsRepository(sportsAPI: getItInstance.get<SportsAPI>()),
+  );
+  getItInstance.registerSingleton(
+    AstronomyRepository(astronomyAPI: getItInstance.get<AstronomyAPI>()),
   );
 }

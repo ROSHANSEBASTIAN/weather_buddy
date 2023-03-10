@@ -3,4 +3,5 @@ class APIEndPoints {
   static const currentWeather = "current.json";
   static const weatherForecast = "forecast.json";
   static const sportsEvents = "sports.json";
+  static const astronomyInfo = "astronomy.json";
 }
