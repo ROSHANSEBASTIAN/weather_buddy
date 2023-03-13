@@ -1,3 +1,5 @@
+import 'package:weather_buddy/navigation/routes.dart';
+
 import '../utils/screen_imports.dart';
 
 import '../controllers/location_selection_controller.dart';
@@ -8,6 +10,10 @@ class LocationSelectionScreen extends StatelessWidget {
 
   final LocationSelectionController locationController =
       LocationSelectionController();
+
+  void mapHandler(BuildContext context) {
+    Navigator.of(context).pushNamed(mapSelectionScreen);
+  }
 
   @override
   Widget build(BuildContext context) {

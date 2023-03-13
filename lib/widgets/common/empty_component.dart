@@ -64,6 +64,7 @@ class EmptyComponent extends StatelessWidget {
                   )
                 : Text(
                     emptyText ?? AppLocalizations.of(context)!.no_data_found,
+                    style: AppStyles.p3,
                   ),
       ),
     );

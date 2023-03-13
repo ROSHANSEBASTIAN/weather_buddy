@@ -18,10 +18,9 @@ class ForecastList extends StatefulWidget {
 class _ForecastListState extends State<ForecastList> {
   List<Widget> widgetList = [];
 
-  GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
   void populateWIdgetList(List<Forecastday> list) {
-    Log.forecastLog("Populating widgets ${list}");
 
     Future future = Future(() {});
     list.forEach((forecast) {

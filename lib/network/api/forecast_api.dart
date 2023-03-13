@@ -11,14 +11,12 @@ class ForecastAPI {
   Future<Response> searchForecastApi(
       {required String searchString, required int days}) async {
     try {
-      print("For forecast api, location is $searchString");
       final Response response = await _apiClient.get(
         endpoint: APIEndPoints.weatherForecast,
         queryParams: {"q": searchString, "days": days.toString()},
       );
       return response;
     } catch (error) {
-      print("Error from forecast API ${error}");
       rethrow;
     }
   }

@@ -10,7 +10,6 @@ class WeatherAPI {
 
   Future<Response> searchCurrentWeatherApi(String searchString) async {
     try {
-      print("In api, search string is $searchString");
       final Response response = await _apiClient.get(
         endpoint: APIEndPoints.currentWeather,
         queryParams: {"q": searchString},

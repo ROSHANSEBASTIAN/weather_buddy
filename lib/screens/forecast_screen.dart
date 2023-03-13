@@ -1,11 +1,9 @@
-import 'package:weather_buddy/blocs/settings/settings_bloc.dart';
-import 'package:weather_buddy/constants/colors.dart';
 
 import '../utils/screen_imports.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../blocs/forecast/forecast_bloc.dart';
-import '../constants/styles.dart';
+import '../blocs/settings/settings_bloc.dart';
 import '../widgets/forecast/forecast_list.dart';
 
 class ForecastScreen extends StatefulWidget {

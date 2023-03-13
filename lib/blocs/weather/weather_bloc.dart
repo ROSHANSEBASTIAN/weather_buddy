@@ -1,7 +1,7 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:weather_buddy/utils/log.dart';
 
+import '../../utils/log.dart';
 import '../../models/place/place.dart';
 import '../../models/weather/weather.dart';
 import '../../network/repository/weather_repository.dart';

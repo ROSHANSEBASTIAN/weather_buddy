@@ -10,39 +10,43 @@ class HomeHorizontalList extends StatelessWidget {
     required Function callback,
     required BuildContext context,
   }) {
-    return Card(
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
+    return Expanded(
+      flex: 1,
+      child: Card(
+        elevation: 10,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(15),
+          ),
         ),
-      ),
-      clipBehavior: Clip.hardEdge,
-      child: InkWell(
-        onTap: () => callback(context),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                flex: 3,
-                child: Image.asset(
-                  image,
-                  width: 70,
-                  height: 50,
-                  fit: BoxFit.contain,
+        clipBehavior: Clip.hardEdge,
+        child: InkWell(
+          onTap: () => callback(context),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: Image.asset(
+                    image,
+                    width: 70,
+                    height: 50,
+                    fit: BoxFit.contain,
+                  ),
                 ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Text(
-                  title,
-                  style: AppStyles.h4,
-                  textAlign: TextAlign.center,
+                Expanded(
+                  flex: 1,
+                  child: Text(
+                    title,
+                    style: AppStyles.h4,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -68,9 +72,28 @@ class HomeHorizontalList extends StatelessWidget {
       margin: const EdgeInsets.only(top: 20, left: 5, right: 5),
       width: double.infinity,
       height: 150,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          // Expanded(
+          //   flex: 1,
+          //   child: Container(
+          //     color: Colors.amber,
+          //     width: double.infinity,
+          //   ),
+          // ),
+          // SizedBox(
+          //   width: 4,
+          // ),
+          // Expanded(
+          //   flex: 1,
+          //   child: Container(
+          //     color: Colors.amber,
+          //     width: double.infinity,
+          //   ),
+          // ),
           renderListItem(
               title: AppLocalizations.of(context)!.sports,
               image: "assets/images/football-player.png",
@@ -80,12 +103,6 @@ class HomeHorizontalList extends StatelessWidget {
             title: AppLocalizations.of(context)!.astronomy,
             image: "assets/images/astronomy.png",
             callback: navigateToAstronomyScreen,
-            context: context,
-          ),
-          renderListItem(
-            title: AppLocalizations.of(context)!.weather_history,
-            image: "assets/images/history.png",
-            callback: navigateToWeatherHistoryScreen,
             context: context,
           ),
         ],

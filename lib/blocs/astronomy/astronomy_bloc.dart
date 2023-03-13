@@ -1,6 +1,7 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:weather_buddy/models/astro_info/astro_info.dart';
+
+import '../../models/astro_info/astro_info.dart';
 import '../../models/place/place.dart';
 import '../../network/repository/astronomy_repository.dart';
 import '../../utils/service_locator.dart';

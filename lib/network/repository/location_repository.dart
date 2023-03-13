@@ -15,7 +15,6 @@ class LocationRepository {
     String? long,
   }) async {
     try {
-      print("received place name is $placeName");
       final response = await locationAPI.searchLocationApi(placeName);
       final placesList =
           (response.data as List).map((e) => Place.fromJson(e)).toList();

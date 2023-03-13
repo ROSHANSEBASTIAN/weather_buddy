@@ -22,7 +22,7 @@ class _WeatherAnimatedState extends State<WeatherAnimated> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 400,
+      height: 350,
       width: double.infinity,
       child: BlocBuilder<WeatherBloc, WeatherState>(builder: (context, state) {
         if (state is WeatherDataLoaded) {

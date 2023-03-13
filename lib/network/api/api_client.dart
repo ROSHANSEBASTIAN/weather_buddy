@@ -31,7 +31,6 @@ class APIClient {
       );
       return response;
     } catch (error) {
-      print("Error from API client ${error}");
       rethrow;
     }
   }

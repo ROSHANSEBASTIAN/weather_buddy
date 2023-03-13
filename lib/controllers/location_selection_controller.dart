@@ -18,7 +18,6 @@ class LocationSelectionController {
   WeatherBloc weatherBloc = WeatherBloc();
 
   Future<List<Place>> placeVerificationHandler() async {
-    print("entered value is ${searchEditingController.text}");
     try {
       final location = await locationRepository.checkForUserLocation(
         placeName: searchEditingController.text,
